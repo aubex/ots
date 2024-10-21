@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
+    <title>{% block title %}aubex OTS{% endblock %}</title>
+    {% endblock head %}
+</head>
+
+<body>
+    {% if request.scope.scheme != "https" %}
+    <div class="error-alert">You are running in a non-https (dev) environment which is insecure, don't share secrets!
+    </div>
+    {% endif %}
+    <div class="logo"><a href="/"><img src="{{ url_for('static', path='/logo.svg')}}" alt="aubex logo"></a></div>
+    <div id="content">{% block content %}{% endblock content %}</div>
+    <div id="footer">
+        {% block footer %}
+        <p>&copy; Copyright 2024 by <a href="https://aubex.de/">aubex</a>.
+            Running version {{version}} from <a href="https://github.com/aubex/ots">https://github.com/aubex/ots</a></p>
+        {% endblock footer %}
+    </div>
+</body>
+
+</html>

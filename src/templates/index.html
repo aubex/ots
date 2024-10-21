@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>OpenSource one time secret (OTS) sharing tool by aubex, Hockenheim.</h1>
+<p>Dies ist ein extrem simples and kleines tool zum sicheren Austausch von Geheimnissen wie Passwörtern, z.B. während
+    eines Meetings.</p>
+<form action="/secret/new" class="secret-form" method="post">
+    <div>
+        <label for="secret">Neues Geheimnis: </label>
+        <input type="text" name="secret" id="secret" required />
+    </div>
+    <div>
+        <input type="submit" value="Teilen!" />
+    </div>
+</form>
+{% endblock content %}
