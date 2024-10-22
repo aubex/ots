@@ -16,33 +16,47 @@ app_state = {}
 @app.post("/secret/new/")
 async def secret_new(secret: str = Form()):
     if secret:
-        share_uri = token_urlsafe(4)
-        app_state[share_uri] = secret
-        return RedirectResponse(url=f"/secret/share/{share_uri}", status_code=303)
+        share_token = token_urlsafe(4)
+        app_state[share_token] = secret
+        return RedirectResponse(url=f"/secret/share/{share_token}", status_code=303)
     return {"secret": secret}
 
 
-@app.get("/secret/share/{share_uri}", response_class=HTMLResponse)
-def api_secret_share(
+@app.get("/secret/share/{share_token}", response_class=HTMLResponse)
+def secret_share(
     request: Request,
-    share_uri: str,
+    share_token: str,
 ):
     return templates.TemplateResponse(
         name="share.html",
         context={
             "request": request,
-            "share_uri": share_uri,
+            "share_token": share_token,
         },
     )
 
 
-@app.get("/secret/receive/{share_uri}", response_class=HTMLResponse)
-def api_secret_receive(
+@app.get("/secret/{share_token}", response_class=HTMLResponse)
+def secret_preview(
     request: Request,
-    share_uri: str,
+    share_token: str,
+):
+    return templates.TemplateResponse(
+        name="preview.html",
+        context={
+            "request": request,
+            "share_token": share_token,
+        },
+    )
+
+
+@app.get("/secret/receive/{share_token}", response_class=HTMLResponse)
+def secret_receive(
+    request: Request,
+    share_token: str,
 ):
     # Retrieve and remove the secret from the dictionary
-    secret = app_state.pop(share_uri, None)
+    secret = app_state.pop(share_token, None)
     if secret:
         return templates.TemplateResponse(
             name="receive.html",
