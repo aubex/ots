@@ -28,7 +28,7 @@ async def secret_new(request: Request):
     return RedirectResponse(url="/")
 
 
-def secret_share(
+async def secret_share(
     request: Request,
 ):
     return templates.TemplateResponse(
@@ -40,7 +40,7 @@ def secret_share(
     )
 
 
-def secret_preview(
+async def secret_preview(
     request: Request,
 ):
     return templates.TemplateResponse(
@@ -52,7 +52,7 @@ def secret_preview(
     )
 
 
-def secret_receive(
+async def secret_receive(
     request: Request,
 ):
     share_token = request.path_params["share_token"]
