@@ -3,9 +3,7 @@
 {% block content %}
 <h1>Ein neues one time secret (OTS) ist bereit.</h1>
 <p>Teile den folgenden Link ohne ihn selbst zu öffnen.</p>
-<div class="secret-form" id="secret-link">
-    {{request.scope.scheme}}://{{request.headers.host}}/secret/{{share_token}}
-</div>
+<div class="secret-form" id="secret-link">{{request.scope.scheme}}://{{request.headers.host}}/secret/{{share_token}}</div>
 <button class="button" onclick="copyToClipboard()">kopieren</button>
 
 <script>
