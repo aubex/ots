@@ -16,7 +16,7 @@ app_state = {}
 @app.post("/secret/new/")
 async def secret_new(secret: str = Form()):
     if secret:
-        share_token = token_urlsafe(4)
+        share_token = token_urlsafe(6)
         app_state[share_token] = secret
         return RedirectResponse(url=f"/secret/share/{share_token}", status_code=303)
     return {"secret": secret}

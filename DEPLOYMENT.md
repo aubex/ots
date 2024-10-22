@@ -57,3 +57,8 @@ your.hostname.de {
     redir https://{host}{uri} permanent
 }
 ```
+
+### run
+```bash
+uv run uvicorn src.ots.main:app --host 0.0.0.0 --port 8000
+```
