@@ -1,3 +1,4 @@
+import os
 from secrets import token_urlsafe
 
 from starlette.applications import Starlette
@@ -6,6 +7,8 @@ from starlette.responses import RedirectResponse
 from starlette.routing import Mount, Route
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
+
+DEBUG = os.environ.get("DEBUG", False) == "True"
 
 templates = Jinja2Templates(directory="src/templates")
 
@@ -92,4 +95,4 @@ routes = [
     Route("/secret/new/", secret_new, methods=["POST"]),
     Mount("/static", StaticFiles(directory="src/static"), name="static"),
 ]
-app = Starlette(debug=True, routes=routes)
+app = Starlette(debug=DEBUG, routes=routes)
