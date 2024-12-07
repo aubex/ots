@@ -1,6 +1,0 @@
-{% extends "base.html" %}
-
-{% block content %}
-<p>Der erste der auf den folgenden Link klickt, empfängt das OTS und es ist verschwunden.</p>
-<a class="button" href="{{request.scope.scheme}}://{{request.headers.host}}/secret/receive/{{share_token}}">Zeig es mir!</a>
-{% endblock content %}
