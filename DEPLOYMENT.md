@@ -60,5 +60,5 @@ your.hostname.de {
 
 ### run
 ```bash
-uv run uvicorn src.ots.main:app --host 0.0.0.0 --port 8000
+python src/ots.py
 ```
