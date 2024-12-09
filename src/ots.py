@@ -1,5 +1,6 @@
 import asyncio
 import base64
+import json
 from secrets import token_urlsafe
 from typing import Dict
 from urllib.parse import parse_qs
@@ -295,7 +296,8 @@ def html_receive(secret=None):
     if secret is not None:
         return html_base(f"""
 <h1>Hier ist dein one time secret (OTS).</h1>
-<div class="secret-form" id="secret">{secret}</div>
+<div class="secret-form" id="secret"></div>
+<script>document.getElementById("secret").innerText={json.dumps(secret)}</script>
 """)
     else:
         return html_base("<h1>Hier ist kein one time secret (OTS).</h1>")
